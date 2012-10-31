@@ -71,7 +71,7 @@ class Validation
 
   public static function value($name, $default = FALSE)
   {
-    return static::get(static::$data, $name, $default);
+    return \Pallid\Helpers::fetch(static::$data, $name, $default);
   }
 
   public static function data()
@@ -79,41 +79,11 @@ class Validation
     return static::$data;
   }
 
-  public static function get($from, $that = NULL, $or = FALSE)
-  {
-    if (is_scalar($from)) {
-      return $or;
-    } elseif (preg_match_all('/\[([^\[\]]*)\]/U', $that, $matches) OR ($matches[1] = explode('.', $that))) {
-      // TODO: there is a previous bug when the first argument has only 1 level?
-      $key = ($offset = strpos($that, '[')) > 0 ? substr($that, 0, $offset) : '';
-
-      if ( ! empty($key)) {
-        array_unshift($matches[1], $key);
-      }
-
-      $key   = array_shift($matches[1]);
-      $get   = join('.', $matches[1]);
-      $depth = sizeof($matches[1]);
-
-      if (is_object($from) && isset($from->$key)) {
-        $tmp = $from->$key;
-      } elseif (is_array($from) && isset($from[$key])) {
-        $tmp = $from[$key];
-      } else {
-        $tmp = $or;
-      }
-
-      $value = ! $depth ? $tmp : static::get($tmp, $get, $or);
-
-      return $value;
-    }
-  }
-
 
   private static function wrong($name, array $set = array())
   {
     $fail = FALSE;
-    $test = static::get(static::$data, $name);
+    $test = \Pallid\Helpers::fetch(static::$data, $name);
 
     if ($key = array_search('required', $set)) {
       unset($set[$key]);
@@ -214,7 +184,7 @@ class Validation
       } elseif (is_numeric($val)) {
         $test[$key] = $val;
       } else {
-        $test[$key] = static::get(static::$data, $val);
+        $test[$key] = \Pallid\Helpers::fetch(static::$data, $val);
       }
     }
 
