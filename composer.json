@@ -1,0 +1,13 @@
+{
+  "name": "habanero/pallid",
+  "description": "Minimal validation for PHP",
+  "authors": [{
+    "name":"Alvaro Cabrera"
+  }],
+  "require": {
+    "php": ">=5.3"
+  },
+  "autoload": {
+    "psr-0": {"Pallid": "lib/"}
+  }
+}
