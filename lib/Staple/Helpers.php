@@ -1,6 +1,6 @@
 <?php
 
-namespace Pallid;
+namespace Staple;
 
 class Helpers
 {

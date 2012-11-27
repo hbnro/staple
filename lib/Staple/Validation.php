@@ -1,6 +1,6 @@
 <?php
 
-namespace Pallid;
+namespace Staple;
 
 class Validation
 {
@@ -71,7 +71,7 @@ class Validation
 
   public static function value($name, $default = FALSE)
   {
-    return \Pallid\Helpers::fetch(static::$data, $name, $default);
+    return \Staple\Helpers::fetch(static::$data, $name, $default);
   }
 
   public static function data()
@@ -83,7 +83,7 @@ class Validation
   private static function wrong($name, array $set = array())
   {
     $fail = FALSE;
-    $test = \Pallid\Helpers::fetch(static::$data, $name);
+    $test = \Staple\Helpers::fetch(static::$data, $name);
 
     if ($key = array_search('required', $set)) {
       unset($set[$key]);
@@ -184,7 +184,7 @@ class Validation
       } elseif (is_numeric($val)) {
         $test[$key] = $val;
       } else {
-        $test[$key] = \Pallid\Helpers::fetch(static::$data, $val);
+        $test[$key] = \Staple\Helpers::fetch(static::$data, $val);
       }
     }
 
