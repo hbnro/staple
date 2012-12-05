@@ -43,6 +43,11 @@ class Helpers
     return $value;
   }
 
+  public static function titlecase($value)
+  {
+    return strtr(static::classify($value), '\\', ' ');
+  }
+
   public static function fetch($from, $that = NULL, $or = FALSE)
   {
     if (is_scalar($from)) {
