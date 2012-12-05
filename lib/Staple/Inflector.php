@@ -5,18 +5,6 @@ namespace Staple;
 class Inflector
 {
 
-  private static $under_repl = array(
-                    '/(^|\W)([A-Z])/e' => '"\\1_".strtolower("\\2");',
-                    '/[A-Z](?=\w)/' => '_\\0',
-                  );
-
-  private static $param_repl = array(
-                    '/[^a-z0-9]|\s+/ie' => '$glue;',
-                    '/\s([a-z])/ie' => '$glue.ucfirst("\\1");',
-                  );
-
-
-
   public static function parameterize($value)
   {
     return strtolower(trim(static::camelcase($value, FALSE, '-'), '-'));
@@ -29,7 +17,11 @@ class Inflector
 
   public static function underscore($value)
   {
-    $value = preg_replace(array_keys(static::$under_repl), static::$under_repl, $value);
+    $value = preg_replace('/\W/', '_', preg_replace('/[A-Z](?=\w)/', '_\\0', $value));
+    $value = preg_replace_callback('/(^|\W)([A-Z])/', function ($match) {
+        "$match[1]_" . strtolower($match[2]);
+      }, $value);
+
     $value = trim(strtr($value, ' ', '_'), '_');
     $value = strtolower($value);
 
@@ -38,11 +30,16 @@ class Inflector
 
   public static function camelcase($value, $ucfirst = FALSE, $glue = '')
   {
-    $value = preg_replace(array_keys(static::$param_repl), static::$param_repl, static::underscore($value));
+    $value = preg_replace('/[^a-z0-9]|\s+/i', ' ', $value);
+    $value = preg_replace_callback('/\s([a-z])/i', function ($match)
+      use ($glue) {
+        return $glue . ucfirst($match[1]);
+      }, $value);
 
-    if ($ucfirst) {
-      $value = ucfirst($value);
-    }
+
+    $value = $ucfirst ? ucfirst($value) : $value;
+    $value = str_replace(' ', '', trim($value));
+
     return $value;
   }
 
