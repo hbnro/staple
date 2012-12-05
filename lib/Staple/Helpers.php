@@ -7,7 +7,7 @@ class Helpers
 
   public static function parameterize($value)
   {
-    return strtolower(trim(static::camelcase($value, FALSE, '-'), '-'));
+    return strtolower(static::camelcase($value, FALSE, '-'));
   }
 
   public static function classify($value)
