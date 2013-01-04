@@ -44,7 +44,7 @@ class Registry
     $bag = ($bag && ! is_numeric($bag)) ? $bag : 'default';
 
     if ( ! isset(static::$stack[$bag])) {
-      static::$stack[$bag] = new stdClass;
+      static::$stack[$bag] = new \stdClass;
     }
     return static::$stack[$bag];
   }
