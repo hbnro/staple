@@ -31,7 +31,7 @@ class Helpers
   public static function camelcase($value, $ucfirst = FALSE, $glue = '')
   {
     $value = preg_replace('/[^a-z0-9]|\s+/i', ' ', $value);
-    $value = preg_replace_callback('/\s([a-z])/i', function ($match)
+    $value = preg_replace_callback('/\s([a-z\d])/i', function ($match)
       use ($glue) {
         return $glue . ucfirst($match[1]);
       }, $value);
