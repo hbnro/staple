@@ -1,6 +1,6 @@
 {
   "name": "habanero/staple",
-  "description": "Minimal validation for PHP",
+  "description": "Generic stand-alone tools for PHP",
   "authors": [{
     "name":"Alvaro Cabrera"
   }],

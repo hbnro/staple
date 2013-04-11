@@ -126,9 +126,22 @@ class Paginate
   {
     $text = $text ? sprintf($this->get('link_text'), number_format($num)) : number_format($num);
 
-    $href = sprintf($num <= 1 ? $this->get('link_root') : $this->get('link_href'), $num);
+    return tag('a', $this->url_for($num), $text);
+  }
 
-    return tag('a', $href, $text);
+  public function url_for($num)
+  {
+    return sprintf($num <= 1 ? $this->get('link_root') : $this->get('link_href'), $num);
+  }
+
+  public function prev_url()
+  {
+    return $this->current() > 1 ? $this->url_for($this->current() - 1) : FALSE;
+  }
+
+  public function next_url()
+  {
+    return $this->current() < $this->pages() ? $this->url_for($this->current() + 1) : FALSE;
   }
 
   public function step($from = 0)
