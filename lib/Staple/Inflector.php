@@ -81,7 +81,6 @@ class Inflector
                   'equipment',
                 );
 
-
   public static function singularize($test)
   {
     return static::apply($test, static::$singular);

@@ -17,12 +17,9 @@ class Paginate
               'count_page' => 20,
             );
 
-
-
   private function __controller()
   {
   }
-
 
   public function __call($method, $arguments)
   {
@@ -35,7 +32,6 @@ class Paginate
     throw new \Exception("Unable to execute '$method' callback");
   }
 
-
   public static function build()
   {
     return new static;
@@ -44,6 +40,7 @@ class Paginate
   public function bind($set)
   {
     $this->results = $set;
+
     return $this;
   }
 
@@ -119,6 +116,7 @@ class Paginate
       }
       $out []= $link;
     }
+
     return $out;
   }
 

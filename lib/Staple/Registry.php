@@ -7,8 +7,6 @@ class Registry
 
   private static $stack = array();
 
-
-
   public static function fetch($item, $or = NULL, $bag = '')
   {
     return \Staple\Helpers::fetch(static::get($bag), $item, $or);
@@ -17,6 +15,7 @@ class Registry
   public static function assign($item, $value, $bag = '')
   {
     static::get($bag)->$item = $value;
+
     return TRUE;
   }
 
@@ -38,7 +37,6 @@ class Registry
     return isset(static::get($bag)->$item);
   }
 
-
   private static function get($bag = '')
   {
     $bag = ($bag && ! is_numeric($bag)) ? $bag : 'default';
@@ -46,6 +44,7 @@ class Registry
     if ( ! isset(static::$stack[$bag])) {
       static::$stack[$bag] = new \stdClass;
     }
+
     return static::$stack[$bag];
   }
 

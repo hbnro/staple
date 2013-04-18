@@ -7,13 +7,10 @@ class Event
 
   private static $set = array();
 
-
-
   public static function __callStatic($method, $arguments)
   {
     return static::fire($method, $arguments);
   }
-
 
   public static function fire($events, array $params = array(), $halt = FALSE)
   {

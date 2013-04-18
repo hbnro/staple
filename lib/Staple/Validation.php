@@ -17,8 +17,6 @@ class Validation
                     '>' => 'gt_',
                   );
 
-
-
   public static function setup(array $test = array())
   {
     static::$error = array();
@@ -79,7 +77,6 @@ class Validation
     return static::$data;
   }
 
-
   private static function wrong($name, array $set = array())
   {
     $fail = FALSE;
@@ -93,7 +90,6 @@ class Validation
         $fail  = TRUE;
       }
     }
-
 
     if ($test) {
       foreach ($set as $error => $rule) {
@@ -148,7 +144,6 @@ class Validation
               $match[2] = NULL;
             }
 
-
             $args = static::vars($match[2]);
             array_unshift($args, $test);
 
@@ -165,7 +160,6 @@ class Validation
         }
       }
     }
-
 
     if ($fail && ! empty($error)) {
       static::$error[$name] = (string) $error;

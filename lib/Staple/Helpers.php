@@ -36,7 +36,6 @@ class Helpers
         return $glue . ucfirst($match[1]);
       }, $value);
 
-
     $value = $ucfirst ? ucfirst($value) : $value;
     $value = str_replace(' ', '', trim($value));
 
