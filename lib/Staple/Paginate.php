@@ -2,7 +2,7 @@
 
 namespace Staple;
 
-class Paginate
+class Paginate implements \IteratorAggregate
 {
 
   private $count = 0;
@@ -19,6 +19,11 @@ class Paginate
 
   private function __controller()
   {
+  }
+
+  public function getIterator()
+  {
+    return new \ArrayIterator($this->all());
   }
 
   public function __call($method, $arguments)
