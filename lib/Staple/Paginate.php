@@ -84,7 +84,9 @@ class Paginate implements \IteratorAggregate
 
     if (is_object($out)) {
       if ( ! method_exists($out, 'all')) {
-        // TODO: raise exception
+        $klass = get_class($out);
+
+        throw new \Exception("Unable to call '$klass::all()' method");
       }
 
       $out = $out->all();
