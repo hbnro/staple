@@ -83,13 +83,7 @@ class Paginate implements \IteratorAggregate
     $out = $this->data;
 
     if (is_object($out)) {
-      if ( ! method_exists($out, 'all')) {
-        $klass = get_class($out);
-
-        throw new \Exception("Unable to call '$klass::all()' method");
-      }
-
-      $out = $out->all();
+      $out = $out->offset($this->offset())->limit($this->per_page())->all();
     } else {
       $out = array_slice($out, $this->offset(), $this->per_page());
     }
