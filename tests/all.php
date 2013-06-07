@@ -26,11 +26,4 @@ var_dump(Staple\Helpers::underscore('ShutUpBro'));
 var_dump(Staple\Helpers::classify('shut-up-bro'));
 var_dump(Staple\Helpers::titlecase('i-am-and-this-is-a-great-thing'));
 
-foreach (array('man', 'fly', 'eye', 'fish', 'words', 'post', 'sheep', 'doctor', 'users', 'account', 'profiles') as $one) {
-  $plural = Staple\Inflector::pluralize($one);
-  $single = Staple\Inflector::singularize($one);
-
-  echo "\n $one => $single : $plural";
-}
-
 echo "\n";
