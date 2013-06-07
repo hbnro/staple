@@ -138,7 +138,7 @@ class Paginate implements \IteratorAggregate
 
     if ($page_num == 1)
     {
-      return $this->links(1, 1, $end, $wrap);
+      return $this->links(1, 1, min($last_page, $end), $wrap);
     }
 
 
@@ -155,7 +155,7 @@ class Paginate implements \IteratorAggregate
     for ($i = $from; $i <= $to; $i += 1) {
       $link = $this->link($i, $this->get('link_text'));
 
-      if ($current === $i) {
+      if ($current == $i) {
         $link = sprintf($wrap, $link);
       }
 
