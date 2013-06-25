@@ -152,6 +152,8 @@ class Paginate implements \IteratorAggregate
 
   public function links($current, $from, $to, $wrap = '[%s]')
   {
+    $out = array();
+
     for ($i = $from; $i <= $to; $i += 1) {
       $link = $this->link($i, $this->get('link_text'));
 
